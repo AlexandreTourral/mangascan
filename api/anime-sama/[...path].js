@@ -17,39 +17,68 @@ export default async function handler(req, res) {
   
   const pathAndQuery = match[1];
   
-  // Construit l'URL cible complète
-  const targetUrl = `https://anime-sama.si/s2/scans/${pathAndQuery}`;
+  // Liste des variantes à essayer pour les noms de manga
+  const urlVariants = [
+    pathAndQuery, // Original : "One%20Piece/1/1.jpg"
+    pathAndQuery.replace(/One%20Piece/gi, 'One-Piece'),  // "One-Piece/1/1.jpg"
+    pathAndQuery.replace(/One%20Piece/gi, 'one-piece'),  // "one-piece/1/1.jpg"
+  ];
   
-  console.log('[Vercel Proxy] Requête vers:', targetUrl);
+  console.log('[Vercel Proxy] Tentative avec variantes:', urlVariants);
+  
+  let response;
+  let targetUrl;
+  let lastError;
+  
+  // Essaie chaque variante jusqu'à ce qu'une fonctionne
+  for (const variant of urlVariants) {
+    targetUrl = `https://anime-sama.si/s2/scans/${variant}`;
+    console.log('[Vercel Proxy] Essai:', targetUrl);
+    
+    try {
+      response = await fetch(targetUrl, {
+        method: req.method || 'GET',
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'application/json, text/plain, image/*, */*',
+          'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+          'Referer': 'https://anime-sama.si/',
+          'Origin': 'https://anime-sama.si',
+          'DNT': '1',
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        },
+      });
+      
+      console.log('[Vercel Proxy] Status:', response.status, 'pour', targetUrl);
+      
+      // Si on obtient un succès (200), on sort de la boucle
+      if (response.ok) {
+        console.log('[Vercel Proxy] ✓ Succès avec:', targetUrl);
+        break;
+      }
+      
+      lastError = { status: response.status, statusText: response.statusText, url: targetUrl };
+    } catch (error) {
+      console.error('[Vercel Proxy] Erreur fetch:', error);
+      lastError = { error: error.message, url: targetUrl };
+    }
+  }
+
+  // Si aucune variante n'a fonctionné
+  if (!response || !response.ok) {
+    console.error('[Vercel Proxy] Toutes les variantes ont échoué');
+    res.status(lastError?.status || 404);
+    return res.json({ 
+      error: `Aucune variante n'a fonctionné`,
+      tried: urlVariants.map(v => `https://anime-sama.si/s2/scans/${v}`),
+      lastError
+    });
+  }
+
+  console.log('[Vercel Proxy] Content-Type:', response.headers.get('content-type'));
 
   try {
-    const response = await fetch(targetUrl, {
-      method: req.method || 'GET',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'application/json, text/plain, image/*, */*',
-        'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
-        'Referer': 'https://anime-sama.si/',
-        'Origin': 'https://anime-sama.si',
-        'DNT': '1',
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-      },
-    });
-
-    console.log('[Vercel Proxy] Status:', response.status);
-    console.log('[Vercel Proxy] Content-Type:', response.headers.get('content-type'));
-
-    if (!response.ok) {
-      console.error('[Vercel Proxy] Erreur HTTP:', response.status, response.statusText);
-      res.status(response.status);
-      return res.json({ 
-        error: `Erreur HTTP ${response.status}`,
-        details: response.statusText,
-        url: targetUrl
-      });
-    }
-
     // Récupère le content-type de la réponse
     const contentType = response.headers.get('content-type') || 'application/octet-stream';
     
