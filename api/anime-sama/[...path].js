@@ -1,26 +1,26 @@
 export default async function handler(req, res) {
-  // Récupère les segments de chemin
-  const { path } = req.query;
-  const pathSegments = Array.isArray(path) ? path : [path].filter(Boolean);
-  const pathString = pathSegments.join('/');
+  // Récupère l'URL complète
+  const fullUrl = req.url || '';
+  console.log('[Vercel Proxy] URL reçue:', fullUrl);
   
-  // Récupère les autres paramètres de query
-  const { path: _, ...queryParams } = req.query;
-  const queryString = new URLSearchParams(
-    Object.entries(queryParams).reduce((acc, [key, value]) => {
-      if (value) {
-        acc[key] = Array.isArray(value) ? value[0] : value;
-      }
-      return acc;
-    }, {})
-  ).toString();
+  // Extrait le chemin après /api/anime-sama/
+  const match = fullUrl.match(/\/api\/anime-sama\/(.+)/);
   
-  // Construit l'URL cible
-  const targetUrl = `https://anime-sama.si/s2/scans/${pathString}${queryString ? `?${queryString}` : ''}`;
+  if (!match) {
+    console.error('[Vercel Proxy] URL invalide:', fullUrl);
+    res.status(400);
+    return res.json({ 
+      error: 'URL invalide',
+      received: fullUrl
+    });
+  }
+  
+  const pathAndQuery = match[1];
+  
+  // Construit l'URL cible complète
+  const targetUrl = `https://anime-sama.si/s2/scans/${pathAndQuery}`;
   
   console.log('[Vercel Proxy] Requête vers:', targetUrl);
-  console.log('[Vercel Proxy] Path segments:', pathSegments);
-  console.log('[Vercel Proxy] Query params:', queryParams);
 
   try {
     const response = await fetch(targetUrl, {
