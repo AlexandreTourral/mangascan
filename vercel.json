@@ -1,6 +1,12 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "routes": [
+    {
+      "src": "/api/anime-sama/(.*)",
+      "dest": "/api/anime-sama"
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
