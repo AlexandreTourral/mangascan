@@ -3,8 +3,9 @@ export default async function handler(req, res) {
   const fullUrl = req.url || '';
   console.log('[Vercel Proxy] URL reçue:', fullUrl);
   
-  // Extrait le chemin après /api/anime-sama/
-  const match = fullUrl.match(/\/api\/anime-sama\/(.+)/);
+  // Extrait le chemin après /api/anime-sama
+  // Format attendu: /api/anime-sama/One%20Piece/1/1.jpg ou /api/anime-sama/get_nb_chap_et_img.php?oeuvre=...
+  const match = fullUrl.match(/^\/api\/anime-sama(.*)$/);
   
   if (!match) {
     console.error('[Vercel Proxy] URL invalide:', fullUrl);
@@ -15,12 +16,25 @@ export default async function handler(req, res) {
     });
   }
   
+  // Récupère tout après /api/anime-sama (y compris le / initial)
   const pathAndQuery = match[1];
   
-  // Construit l'URL cible directement (format confirmé: One%20Piece/chapitre/page.jpg)
-  const targetUrl = `https://anime-sama.si/s2/scans/${pathAndQuery}`;
+  // Si le chemin est vide ou juste "/", retourne une erreur
+  if (!pathAndQuery || pathAndQuery === '/') {
+    res.status(400);
+    return res.json({ 
+      error: 'Chemin manquant',
+      hint: 'Format attendu: /api/anime-sama/One%20Piece/1/1.jpg ou /api/anime-sama/get_nb_chap_et_img.php?oeuvre=...'
+    });
+  }
   
+  // Construit l'URL cible (retire le / initial car on ajoute /s2/scans/)
+  const targetUrl = `https://anime-sama.si/s2/scans${pathAndQuery}`;
+  
+  console.log('[Vercel Proxy] ===== DEBUG =====');
+  console.log('[Vercel Proxy] pathAndQuery:', pathAndQuery);
   console.log('[Vercel Proxy] URL cible:', targetUrl);
+  console.log('[Vercel Proxy] =================');
 
   try {
     const response = await fetch(targetUrl, {
@@ -29,11 +43,14 @@ export default async function handler(req, res) {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'application/json, text/plain, image/*, */*',
         'Accept-Language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Accept-Encoding': 'gzip, deflate, br',
         'Referer': 'https://anime-sama.si/',
-        'Origin': 'https://anime-sama.si',
         'DNT': '1',
         'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
+        'Pragma': 'no-cache',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin'
       },
     });
 
@@ -42,11 +59,25 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       console.error('[Vercel Proxy] Erreur HTTP:', response.status, response.statusText);
+      
+      // Essaie de lire le corps de la réponse pour plus d'infos
+      let errorBody = null;
+      try {
+        const text = await response.text();
+        errorBody = text.substring(0, 500); // Limite à 500 caractères
+      } catch (e) {
+        // Ignore si on ne peut pas lire le corps
+      }
+      
       res.status(response.status);
       return res.json({ 
         error: `Erreur HTTP ${response.status}`,
         details: response.statusText,
-        url: targetUrl
+        url: targetUrl,
+        errorBody,
+        hint: response.status === 404 
+          ? "L'URL demandée n'existe pas sur anime-sama.si. Vérifiez le nom du manga, le numéro de chapitre et de page."
+          : null
       });
     }
 
@@ -62,6 +93,7 @@ export default async function handler(req, res) {
       try {
         const data = JSON.parse(text);
         res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Cache-Control', 'public, max-age=300'); // 5 minutes
         res.status(200);
         return res.json(data);
       } catch {
