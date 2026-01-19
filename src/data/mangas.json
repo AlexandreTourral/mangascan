@@ -17,6 +17,90 @@
       "name": "Gachiakuta ",
       "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Gachiakuta%20",
       "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/gachiakuta.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Kingdom ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Kingdom%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/kingdom.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Black Clover",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Black%20Clover",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/black-Clover.jpg"
+    },
+    {
+      "id": 6,
+      "name": "One Punch Man",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=One%20Punch%20man",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/one-punch-man.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Blue Lock ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Blue%20Lock%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/blue-lock.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Berserk",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Berserk",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/berserk.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Choujin X",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Choujin%20X",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/choujin-x.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Hunter x Hunter",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Hunter%20x%20Hunter",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/hunter-x-hunter.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Ordeal  ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Ordeal%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/ordeal.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Jujutsu Kaisen Modulo",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Jujutsu%20Kaisen%20Modulo",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/jujutsu-kaisen.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Hajime no Ippo",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Hajime%20no%20Ippo",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/hajime-no-ippo.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Juujika no Rokunin ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Juujika%20no%20Rokunin%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/juujika-no-rokunin.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Fairy Tail 100 Years Quest",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Fairy%20Tail%20100%20Years%20Quest",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/fairy-tail.jpg"
+    },
+    {
+      "id": 16,
+      "name": "The Beginning After the End",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=The%20Beginning%20After%20the%20End",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/the-beginning-after-the-end.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Radiant",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Radiant",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/radiant.jpg"
     }
   ]
 }
