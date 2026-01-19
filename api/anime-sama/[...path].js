@@ -1,6 +1,4 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req, res) {
   // Récupère les segments de chemin
   const { path } = req.query;
   const pathSegments = Array.isArray(path) ? path : [path].filter(Boolean);
@@ -14,7 +12,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         acc[key] = Array.isArray(value) ? value[0] : value;
       }
       return acc;
-    }, {} as Record<string, string>)
+    }, {})
   ).toString();
   
   // Construit l'URL cible
