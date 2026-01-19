@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --color-royal-blue: #0047AB;
+  --color-royal-blue-light: #5A8CD9;
+  --color-royal-blue-dark: #003380;
+  --color-royal-blue-darker: #002566;
+  --color-electric-blue: #0066FF;
+}
+
+/* Custom scrollbar for carousel */
+.carousel-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-royal-blue) #E5E7EB;
+}
+
+.carousel-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-scrollbar::-webkit-scrollbar-track {
+  background: #E5E7EB;
+  border-radius: 10px;
+  margin: 0 4px;
+}
+
+.carousel-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-royal-blue);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.carousel-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-royal-blue-dark);
+}

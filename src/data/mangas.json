@@ -1,0 +1,22 @@
+{
+  "mangas": [
+    {
+      "id": 1,
+      "name": "One Piece",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=One%20Piece",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/one-piece.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Boruto - Two Blue Vortex",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Boruto%20-%20Two%20Blue%20Vortex",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/boruto.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Gachiakuta ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Gachiakuta%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/gachiakuta.jpg"
+    }
+  ]
+}
