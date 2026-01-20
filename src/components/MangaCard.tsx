@@ -9,15 +9,15 @@ interface MangaCardProps {
   manga: Manga
   onClick?: () => void
   DisplayIn?: 'collection' | 'readingList'
+  isAddedToCollection?: boolean
 }
 
-export default function MangaCard({ manga, onClick, DisplayIn}: MangaCardProps) {
+export default function MangaCard({ manga, onClick, DisplayIn, isAddedToCollection}: MangaCardProps) {
   const navigate = useNavigate()
   const { addToCollection, removeFromCollection } = useCollectionStore()
   const { getMangaProgress, removeFromReadingList } = useCurrentMangaStore()
   const mangaProgress = getMangaProgress(manga.id)
   
-  // Vérifie s'il y a de nouveaux chapitres disponibles
   const hasNewChapters = DisplayIn === 'readingList' && 
     manga.chapters !== undefined && 
     mangaProgress && 
@@ -61,7 +61,7 @@ export default function MangaCard({ manga, onClick, DisplayIn}: MangaCardProps) 
         {DisplayIn === 'readingList' && (
           <button
             onClick={handleRemoveFromReadingList}
-            className="absolute top-3 right-2 z-10 w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center transition-all hover:bg-red-50 hover:shadow-xl"
+            className="absolute top-3 right-2 z-10 w-8 h-8 cursor-pointer rounded-full bg-white shadow-lg flex items-center justify-center transition-all hover:bg-red-50 hover:shadow-xl"
             style={{ color: 'var(--color-royal-blue)' }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 hover:text-red-500 transition-colors">
@@ -125,7 +125,7 @@ export default function MangaCard({ manga, onClick, DisplayIn}: MangaCardProps) 
 
           {/* Bouton d'action : soit reading list, soit collection */}
           {DisplayIn === 'collection'
-            ? <Button variant="secondary" size="sm" onClick={handleRemoveFromCollection} className="w-full">
+            ? <Button variant="secondary" size="sm" onClick={handleRemoveFromCollection} className="w-full cursor-pointer">
                 Retirer de la collection
               </Button>
             : null
@@ -136,7 +136,7 @@ export default function MangaCard({ manga, onClick, DisplayIn}: MangaCardProps) 
                 variant="primary" 
                 size="sm" 
                 onClick={handleResumeReading} 
-                className="w-full"
+                className="w-full cursor-pointer"
                 rightIcon={
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
@@ -148,16 +148,27 @@ export default function MangaCard({ manga, onClick, DisplayIn}: MangaCardProps) 
             : null
           }
 
-          {DisplayIn === undefined ?
-            <Button
+          {DisplayIn === undefined && !isAddedToCollection
+          ? <Button
               variant="primary"
               size="sm"
               onClick={handleAddToCollection}
-              className="w-full"
-            >
-              Ajouter à ma collection
-            </Button>
-          : null}
+              className="w-full cursor-pointer"
+             >
+               Ajouter à ma collection
+             </Button>
+          : DisplayIn === undefined && isAddedToCollection
+            ? <Button
+                variant="primary"
+                size="sm"
+                onClick={handleAddToCollection}
+                className="w-full cursor-pointer"
+                disabled={true}
+               >
+                Déjà dans ma collection
+              </Button>
+            : null
+          }
         </div>
       </div>
     </div>
