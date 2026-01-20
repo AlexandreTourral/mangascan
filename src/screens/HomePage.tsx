@@ -5,6 +5,7 @@ import { useCatalogueStore } from '../stores/catalogueStore'
 import { useCollectionStore } from '../stores/collectionStore'
 import { useCurrentMangaStore } from '../stores/currentMangaStore'
 import { useNavigate } from 'react-router-dom'
+import Button from '../components/Button'
 
 export default function HomePage() {
   const { catalogue, isLoading, error, getCatalogue } = useCatalogueStore()
@@ -37,6 +38,18 @@ export default function HomePage() {
 
   if (error) {
     console.warn('Erreur API, utilisation des données d\'exemple:', error)
+  }
+
+  if (readingList.length < 1 && collection.length < 1) {
+    return (
+        <div className='flex flex-col items-center justify-center gap-4 min-h-screen'>
+          <div className='text-2xl font-bold' style={{ color: 'var(--color-royal-blue-darker)' }}> Vous n'avez aucun manga en cours de lecture ou dans votre collection  </div>
+          <div> Vous pouvez ajouter des mangas à votre collection en cliquant sur le bouton "Ajouter à ma collection" sur le catalogue </div>
+          <Button variant="outline" size="lg" onClick={() => navigate('/catalogue')}>
+            Aller au catalogue
+          </Button>
+        </div>
+    )
   }
 
   return (
@@ -74,8 +87,6 @@ export default function HomePage() {
               </Carousel>
             </section>
           )}
-
-          
         </div>
       </div>
     </div>
