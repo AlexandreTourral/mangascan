@@ -101,6 +101,108 @@
       "name": "Radiant",
       "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Radiant",
       "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/radiant.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Yomi no Tsugai",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Yomi%20no%20Tsugai",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/yomi-no-tsugai.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Kagura Bachi ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Kagura%20Bachi%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/kagura-bachi.jpg"
+    },
+    {
+      "id": 20,
+      "name": "REAL",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=REAL",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/real.jpg"
+    },
+    {
+      "id": 21,
+      "name": "Tower of God ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Tower%20of%20God%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/tower-of-god.jpg"
+    },
+    {
+      "id": 22,
+      "name": "Martial Peak",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Martial%20Peak",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/martial-peak.jpg"
+    },
+    {
+      "id": 23,
+      "name": "Mercenary enrollment",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Mercenary%20enrollment",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/mercenary-enrollment.jpg"
+    },
+    {
+      "id": 24,
+      "name": "I'm the Max-Level Newbie",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=I'm%20the%20Max-Level%20Newbie",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/im-the-max-level-newbie.jpg"
+    },
+    {
+      "id": 25,
+      "name": "Chainsaw man",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Chainsaw%20man",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/chainsaw-man.jpg"
+    },
+    {
+      "id": 26,
+      "name": "Demon Evolution",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Demon%20Evolution",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/demon-evolution.jpg"
+    },
+    {
+      "id": 27,
+      "name": "Embers",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Embers",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/embers.jpg"
+    },
+    {
+      "id": 28,
+      "name": "Four Knights of the Apocalypse ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Four%20Knights%20of%20the%20Apocalypse%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/four-knights-of-the-apocalypse.jpg"
+    },
+    {
+      "id": 29,
+      "name": "Latna Saga Survival of a Sword King",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Latna%20Saga%20Survival%20of%20a%20Sword%20King",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/latna-saga-survival-of-a-sword-king.jpg"
+    },
+    {
+      "id": 30,
+      "name": "Lecteur Omniscient",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Lecteur%20Omniscient",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/lecteur-omniscient.jpg"
+    },
+    {
+      "id": 31,
+      "name": "The World After The Fall",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=The%20World%20After%20The%20Fall",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/the-world-after-the-fall.jpg"
+    },
+    {
+      "id": 32,
+      "name": "Undead Unluck",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Undead%20Unluck",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/undead-unluck.jpg"
+    },
+    {
+      "id": 33,
+      "name": "Wind Breaker ",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=Wind%20Breaker%20",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/wind-breaker-manga0.jpg"
+    },
+    {
+      "id": 34,
+      "name": "L'ère des Surhommes",
+      "url": "/api/anime-sama/get_nb_chap_et_img.php?oeuvre=L'%C3%A8re%20des%20Surhommes",
+      "image": "https://raw.githubusercontent.com/Anime-Sama/IMG/img/contenu/l-ere-des-surhommes.jpg"
     }
   ]
 }
